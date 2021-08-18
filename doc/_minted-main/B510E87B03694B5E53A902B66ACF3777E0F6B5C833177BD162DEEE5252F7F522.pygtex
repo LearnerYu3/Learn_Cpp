@@ -1,4 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kt}{int} \PYG{n}{rats}\PYG{p}{;}
-\PYG{k+kt}{int} \PYG{o}{\PYGZam{}} \PYG{n}{rodents} \PYG{o}{=} \PYG{n}{rats}\PYG{p}{;} \PYG{c+c1}{//makes rodents an alias for rats}
-\end{Verbatim}

@@ -4,5 +4,5 @@
 *.log
 *.out
 *.toc
-doc\_minted-main\
+doc/_minted-main
 *gz

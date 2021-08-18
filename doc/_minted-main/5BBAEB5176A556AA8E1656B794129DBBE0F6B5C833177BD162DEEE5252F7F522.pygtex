@@ -1,5 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kt}{double} \PYG{n}{c5} \PYG{o}{=} \PYG{n}{refcube}\PYG{p}{(}\PYG{n}{edge}\PYG{p}{);}\PYG{c+c1}{//ra is temporary variable}
-\PYG{k+kt}{double} \PYG{n}{c6} \PYG{o}{=} \PYG{n}{refcube}\PYG{p}{(}\PYG{l+m+mf}{7.0}\PYG{p}{);}\PYG{c+c1}{//ra is temporary}
-\PYG{k+kt}{double} \PYG{n}{c7} \PYG{o}{=} \PYG{n}{refcube}\PYG{p}{(}\PYG{n}{side}\PYG{o}{+}\PYG{l+m+mf}{10.0}\PYG{p}{);}\PYG{c+c1}{//ra is temporary}
-\end{Verbatim}

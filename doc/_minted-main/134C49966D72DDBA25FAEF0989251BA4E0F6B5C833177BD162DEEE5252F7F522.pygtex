@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Panda\PYGZdq{}}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{);}    \PYG{c+c1}{//use \PYGZsh{}1}
-\PYG{n}{print}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Syrup\PYGZdq{}}\PYG{p}{);}       \PYG{c+c1}{//use \PYGZsh{}5}
-\PYG{n}{print}\PYG{p}{(}\PYG{l+m+mf}{1999.0}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{);}    \PYG{c+c1}{//use \PYGZsh{}2}
-\PYG{n}{print}\PYG{p}{(}\PYG{l+m+mi}{1999}\PYG{p}{,} \PYG{l+m+mi}{12}\PYG{p}{);}      \PYG{c+c1}{//use \PYGZsh{}4}
-\PYG{n}{print}\PYG{p}{(}\PYG{l+m+mi}{1999L}\PYG{p}{,} \PYG{l+m+mi}{15}\PYG{p}{);}     \PYG{c+c1}{//use \PYGZsh{}3}
-\end{Verbatim}

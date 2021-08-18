@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kt}{void} \PYG{n+nf}{functionName} \PYG{p}{(}\PYG{n}{parameterList}\PYG{p}{)}
-\PYG{p}{\PYGZob{}}
-	\PYG{n}{statements}\PYG{p}{;}
-	\PYG{k}{return}\PYG{p}{;}  \PYG{c+c1}{//optional}
-\PYG{p}{\PYGZcb{}}
-\end{Verbatim}

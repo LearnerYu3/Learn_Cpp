@@ -1,7 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k+kt}{void} \PYG{n+nf}{staff}\PYG{p}{(}\PYG{k+kt}{double} \PYG{o}{\PYGZam{}} \PYG{n}{rs}\PYG{p}{);} \PYG{c+c1}{//matches modifiable lvalue}
-\PYG{k+kt}{void} \PYG{n+nf}{staff}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{o}{\PYGZam{}} \PYG{n}{rc}\PYG{p}{);} \PYG{c+c1}{//matched rvalue,const lvalue}
-\PYG{k+kt}{void} \PYG{n+nf}{stove}\PYG{p}{(}\PYG{k+kt}{double} \PYG{o}{\PYGZam{}} \PYG{n}{r1}\PYG{p}{);} \PYG{c+c1}{//modifiable lvalue}
-\PYG{k+kt}{void} \PYG{n+nf}{stove}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{o}{\PYGZam{}} \PYG{n}{r2}\PYG{p}{);} \PYG{c+c1}{//const lvalue}
-\PYG{k+kt}{void} \PYG{n}{stove}\PYG{p}{(}\PYG{k+kt}{double} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{r3}\PYG{p}{)} \PYG{c+c1}{//rvalue}
-\end{Verbatim}

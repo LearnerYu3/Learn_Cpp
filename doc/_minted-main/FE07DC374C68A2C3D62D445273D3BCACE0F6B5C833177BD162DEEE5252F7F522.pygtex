@@ -1,4 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{typedef} \PYG{k+kt}{char} \PYG{n}{byte}\PYG{p}{;} \PYG{c+c1}{//make byte an alias for char}
-\PYG{c+c1}{//typedef typename aliasname;}
-\end{Verbatim}
