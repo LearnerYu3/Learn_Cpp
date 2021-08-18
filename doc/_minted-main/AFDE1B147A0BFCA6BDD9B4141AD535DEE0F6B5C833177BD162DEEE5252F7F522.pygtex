@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{n}{ofstream} \PYG{n}{outFile}  \PYG{c+c1}{//outFile an ofstream object}
+	\PYG{n}{ofstream} \PYG{n}{fout}  \PYG{c+c1}{//fout an ofstream object}
+	\PYG{n}{outFile}\PYG{p}{.}\PYG{n}{open}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}fish.txt\PYGZdq{}}\PYG{p}{);}
+	\PYG{k+kt}{char} \PYG{n}{filename}\PYG{p}{[}\PYG{l+m+mi}{50}\PYG{p}{];}
+	\PYG{n}{cin} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{filename}\PYG{p}{;}
+	\PYG{n}{fout}\PYG{p}{.}\PYG{n}{open}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{);}
+	\PYG{k+kt}{double} \PYG{n}{wt} \PYG{o}{=} \PYG{l+m+mf}{125.8}\PYG{p}{;}
+	\PYG{n}{outFile} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{wt}\PYG{p}{;} \PYG{c+c1}{//write a number to fish.txt}
+	\PYG{k+kt}{char} \PYG{n}{line}\PYG{p}{[}\PYG{l+m+mi}{81}\PYG{p}{]} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}Object are closer than they appear.\PYGZdq{}}\PYG{p}{;}
+	\PYG{n}{fout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{line} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}
+\end{Verbatim}

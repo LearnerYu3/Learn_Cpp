@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{double} \PYG{o}{\PYGZam{}}\PYG{n+nl}{x} \PYG{p}{:} \PYG{n}{price}\PYG{p}{)}
+		\PYG{n}{x} \PYG{o}{=} \PYG{n}{x} \PYG{o}{*} \PYG{l+m+mf}{0.8}\PYG{p}{;}
+\end{Verbatim}

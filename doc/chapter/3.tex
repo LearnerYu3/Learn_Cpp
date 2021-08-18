@@ -1,0 +1,121 @@
+\chapter{分支语句和逻辑运算符}
+\section{字符函数库 cctype}
+C++从 C 语言继承了一个与字符相关的、非常方便的函数软件包，它可以简化诸如确定字符是否为大写字母、数字、标点符号等工作，这些函数的原型是在头文件 cctype（老式的风格中为 ctype.h）中定义的。
+\begin{table}[h]
+	\centering
+	\caption{cctype 中的字符函数}
+	\begin{tabular}{c|l}
+		\hline
+		函数名称 & 返回值 \\ \hline
+		isalnum() & 如果参数是字母数字，即字母或数字，该函数返回 true \\ \hline
+		isalpha() & 如果参数是字母，该函数返回 true \\ \hline
+		iscntrl() & 如果参数是控制字符，该函数返回 true \\ \hline
+		isdigit() & 如果参数是数字（$0 \sim 9$），该函数返回 true \\ \hline
+		isgraph() & 如果参数是除空格之外的打印字符，该函数返回 true \\ \hline
+		islower() & 如果参数是小写字母，该函数返回 true \\ \hline
+		isprint() & 如果参数是打印字符（包括空格），该函数返回 true \\ \hline
+		ispunct() & 如果参数是标点符号，该函数返回 true \\ \hline
+		\multirow{2}*{isspace()} & 如果参数是标准空白字符，如空格、进纸、换行符、回车、水平制 \\  &表符或者垂直制表符，该函数返回 true \\ \hline
+		isupper() & 如果参数是大写字母，该函数返回 true \\ \hline
+		isxdigit() & 如果参数是十六进制数字，该函数返回 true \\ \hline
+		tolower() & 如果参数是大写字符，则返回其小写，否则返回该参数 \\ \hline
+		toupper() & 如果参数是小写字符，则返回其大写，否则返回该参数 \\ \hline
+	\end{tabular}
+\end{table}
+\section{?: 运算符}
+?: 运算符也被称为条件运算符，它是 C++ 中唯一一个需要 3 个操作数的运算符。通用格式为
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	expression1 ? expression2 : expression3
+	5 > 3 ? 10 : 12 //5>3 is true, so expression value is 10
+\end{tcblisting}
+\section{简单文件输入/输出}
+\subsection{写入到文本文件中}
+对于文件输入，C++ 使用了类似于 cout 的东西。下面列出有关将 cout 用于控制台输出的基本事实
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item 必须包含头文件 iostream。
+	\item 头文件 iostream 定义了一个处理输出的 ostream 类。
+	\item 头文件 iostream 声明了一个名为 cout 的 ostream 对象。
+	\item 必须指明名称空间 std；例如，为引用元素 cout 和 endl，必须使用编译指令 using 或前缀 std::。
+	\item 可以结合使用 cout 和运算符<<来显示各种类型的数据。
+\end{itemize}
+文件输出与此极为相似。
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item 必须包含头文件 fstream。
+	\item 头文件 fstream 定义了一个用于处理输出的 ofstream 类。
+	\item 需要声明一个或多个 ofstream 变量（对象），并以自己喜欢的方式对其进行命名，条件是遵守常用的命名规则。
+	\item 必须指明名称空间 std；例如，为引用元素 ofstream，必须使用编译指令 using 或前缀 std::。
+	\item 需要将 ofstream 对象与文件关联起来。为此，方法之一是使用 open() 方法。
+	\item 使用完文件后，应使用 close() 将其关闭。
+	\item 可结合使用 ofstream 对象和运算符<<来输出各种类型的数据。
+\end{itemize}
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	ofstream outFile  //outFile an ofstream object
+	ofstream fout  //fout an ofstream object
+	outFile.open("fish.txt");
+	char filename[50];
+	cin >> filename;
+	fout.open(filename);
+	double wt = 125.8;
+	outFile << wt; //write a number to fish.txt
+	char line[81] = "Object are closer than they appear.";
+	fout << line << endl;
+\end{tcblisting}
+声明一个 ofstream 对象并将其同文件关联起来后，便可以像使用 cout 那样使用它。所有可用于 cout 的操作和方法都可用于 ofstream 对象。
+
+默认情况下，open() 将首先截断该文件，即将其长度截短到零——丢其原有的内容，然后将新的输出加入到该文件中。
+\begin{marker}
+	打开已有的文件，以接受输出时，默认将它其长度截短为零，因此原来的内容将丢失。
+\end{marker}
+\subsection{读取文本文件}
+回顾文本文件输入，它是基于控制台输入的。控制台输入涉及多个方面，下面首先总结这些方面。
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item 必须包含头文件 iostream。
+	\item 头文件 iostream 定义了一个用处理输入的 istream 类。 
+	\item 头文件 iostream 声明了一个名为 cin 的 istream 变量（对象）。
+	\item 必须指明名称空间 std；例如，为引用元素 cin，必须使用编译指令 using 或前缀 std::。
+	\item 可以结合使用 cin 和运算符>>来读取各种类型的数据。
+	\item 可以使用 cin 和 get() 方法来读取一个字符，使用cin 和 getline() 来读取一行字符。
+	\item 可以结合使用 cin 和 eof()、fail()方法来判断输入是否成功。
+	\item 对象 cin 本身被用作测试条件时，如果最后一个读取操作成功，它将被转换为布尔值 true，否则被转换为 false。
+\end{itemize}
+文件输入与此极其相似：
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item 必须包含文件头 fstream。
+	\item 头文件 fstream 定义了一个用于处理输入的 ifstream 类。
+	\item 需要声明一个或多个 ifstream 变量（对象），并以自己喜欢的方式对其进行命名，条件是遵守常用的命名规则。
+	\item 必须指明名称空间 std；例如，为引用元素 ifstream，必须使用编译指令 using 或前缀 std::。
+	\item 需要将 ifstream 对象与文件关联起来。为此，方法之一是使用 open()方法。
+	\item 使用完文件后，应使用 close() 方法将其关闭。
+	\item 可结合使用 ifstream 对象和运算符>>来读取各种类型的数据。
+	\item 可以使用 ifstream 对象和 get()方法来读取一个字符，使用 ifstream 对象和 getline()来读取一行字符。
+	\item 可以结合使用 ifstream 和 eof()、fail()等方法来判断输入是否成功。
+	\item  ifstream 对象本身被用作测试条件时，如果最后一个读取操作成功，它将被转换为布尔值 true，否则被转换为 false。
+\end{itemize}
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	ifstream inFile; // inFile an ifstream object
+	ifstream fin; //fin an ifstream object
+	inFile.open("bowling.txt");
+	char filename[50];
+	cin >> filename;
+	fin.open(filename);
+	double wt;
+	inFile >> wt; //read a number from bowling.txt
+	char line[81];
+	fin.getline(line, 81); //read a line of text
+\end{tcblisting}
+{\color{red}声明一个 ifstream 对象并将其同文件关联起来后，便可以像使用 cin 那样使用它。所有可用于 cin 的操作和方法都可用于 ifstream 对象}
+\begin{marker}
+	Windows 文本文件的每行都以回车字符和换尾符结尾；通常情况下，C++在读取文件时将这两个字符转换为换行符，并在写入文件时执行相反的转换。有些文本编辑器不会自动在最后一行末尾加上换行符。此时需要在最后按下回车键，然后再保存文件。
+\end{marker}

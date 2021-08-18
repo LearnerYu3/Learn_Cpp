@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{guest}\PYG{o}{++} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{10}\PYG{p}{)}
+		\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{guest} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}
+\end{Verbatim}

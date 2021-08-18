@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k}{for}\PYG{p}{(}\PYG{n}{initialization}\PYG{p}{;} \PYG{n}{test}\PYG{o}{\PYGZhy{}}\PYG{n}{expression}\PYG{p}{;} \PYG{n}{update}\PYG{o}{\PYGZhy{}}\PYG{n}{expression}\PYG{p}{)}
+		\PYG{n}{body}
+\end{Verbatim}

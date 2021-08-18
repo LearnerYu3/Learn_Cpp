@@ -1,0 +1,153 @@
+\chapter{循环}
+\section{for 循环}
+for 循环为执行重复的操作提供了循环渐进的步骤。
+\begin{enumerate}
+	\item 设置初始值
+	\item 执行测试，看看循环是否应当继续进行
+	\item 执行循环操作
+	\item 更新用于测试的值
+\end{enumerate}
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+	for(initialization; test-expression; update-expression)
+		body
+\end{tcblisting}
+\subsection{副作用和顺序点}
+C++ 就递增运算符生效做了一些规定。首先，副作用（side effect）指的是在计算表达式时对某些东西（如存储在变量中的值）进行了修改；顺序点（sequence point）是程序执行过程中的一个点，在这里，进入下一步之前将确保对所有的副作用都进行了评估。在 C++ 中，语句的分号是一个顺序点，这意味着程序处理下一条语句之前，赋值运算符、递增运算符和递减运算符执行的所有修改都必须完成。任何完整的表达式末尾都是一个顺序点。
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+	while (guest++ < 10)
+		cout << guest << endl;
+\end{tcblisting}
+这里表达式 guest++ < 10 是一个完整表达式，C++ 将确保副作用（将 guest 加 1）在程序进入 cout 之前完成。而下面的语句中
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+	y = (4 + x++) + (6 + x++);
+\end{tcblisting}
+表达式 4 + x++ 不是一个完整的表达式，因此，C++ 不保证 x 的值在计算子表达式 4 + x++ 后立刻增加 1。在这个例子中，整条赋值语句是一个完整的表达式，而分号标注了顺序点。C++ 没有规定是在计算每个子表达式之后将 x 的值递增，还是在整个表达式计算完毕后才将 x 的值递增，所以应避免使用。
+\subsection{前缀格式和后缀格式}
+选择前缀格式还是使用后缀格式可能对程序的行为没有影响（for 循环中的条件语句），但是执行速度可能有细微的差别。对于内置类型和当代的编译器而言，这可能不是什么问题。然而，C++ 允许您针对类定义这些运算符，在这种情况下，用户这样定义前缀函数：将值加 1，然后返回结果；但后缀版本首先复制一个副本，将其加 1，然后将复制的副本返回。因此，对于类而言，前缀版本的效率比后缀版本高。
+\subsection{递增/递减运算符和指针}
+可将递增运算符用于指针和基本变量。将递增运算符用于指针时，将把指针的值增加其值相的数据类型占用的字节数，这种规则适用于对指针递增和递减
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+	double arr[5] = {21.1, 11.2, 23.4, 23.1, 43.2};
+	double* pt = arr;  //pt points to arr[0]
+	++pt;             //pt points to arr[1]
+\end{tcblisting}
+也可以结合使用这些运算符和 * 运算符来修改指针指向的值。前缀递增、前缀递减和解除引用运算符的优先级相同，以从右到左的方式进行结合。后缀递增和后缀递减的优先级相同，但比前缀运算符的优先级高，这两个运算符以从左到右的方式进行结合
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+	double x = *++pt;  //increment pointer, pt points to arr[2]
+	++*pt;      
+//increment the pointed to value, change 23.4 to 24.4
+	(*pt)++;   //increment pointed-to value
+	x = *pt++;
+//dereference original location, then increment pointer
+\end{tcblisting}
+后缀运算符++的优先级更高，这意味着将运算符用于 pt，而不是 *pt，因此对指针递增。然后后缀运算符意味着将对原来的地址（\&arr[2]）而不是递增后的新地址解除引用，因此 *pt++ 的值为 arr[2]，但该语句执行完毕后，pt 的值将为 arr[3] 的地址。
+%\begin{table}[h]
+%	\centering
+%	\caption{组合赋值运算符}
+%	\begin{tabular}{c|c}
+%		\hline 
+%		操作符 & 作用（L为左操作数，R为右操作数） \\ \hline
+%		+= & 将 L+R 赋给 L　\\ \hline
+%		-+ & 将 L-R 赋给 L \\ \hline
+%		*= & 将 L*R 赋给 L \\ \hline
+%		/= & 将 L/R 赋给 L \\ \hline
+%		\%= & 将 L\%R 赋给 L  \\ \hline
+%	\end{tabular}
+%\end{table}
+
+复合语句有一种有趣的特性。如果在语句块中定义一个新的变量，则仅当程序执行该语句块中的语句时，该变量才存在。执行完该语句块后，变量将被释放，即此变量仅在该语句块中才是可用的
+
+在使用语句块时，如果在外部语句块中声明一个变量，而外部语句块中也有一个这种名称的变量，在声明位置到内部语句块结束的范围之内，新变量将隐藏旧变量；然后旧变量再次可见。
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+#include<iostream>
+int main()
+{
+	using std::cout;
+	using std::endl;
+	int x = 20;    //original x
+	{
+		cout << x << endl;  //use original x
+		int x = 100;        // new x
+		cout << x << endl;  // use new x
+	}
+	cout << x << endl;    // use original x
+	return 0;
+}
+\end{tcblisting}
+\section{while 循环}
+while 循环没有初始化和更新部分的 for 循环，它只有测试条件和循环体：
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language =c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	while (test-condition)
+		body
+\end{tcblisting} 
+\subsection{类型别名}
+C++ 为类型建立别名的方式有两种。一种是使用预处理器：
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+#define BYTE char //reprocessor replace BYTE with char
+\end{tcblisting}
+这样，预处理器将在编译程序时用 char 替换所有的 BYTE，从而使 BYTE 成为 char 的别名。
+
+第二种方法是使用 C++（和 C）的关键字 typedef 来创建别名。例如，要将 byte 作为 char 的别名，可以这样做：
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+typedef char byte; //make byte an alias for char
+//typedef typename aliasname;
+\end{tcblisting}
+要让 byte\_pointer 成为 char 指针的别名，可将 byte\_pointer 声明为 char 指针，然后在前面加上 typedef：
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+typedef char * byte_pointer; 
+// or 
+#define float_pointer float *
+float_pointer pa, pb;
+// preprocessor convert to
+float * pa, pb; //pa a pointer, pb just a float
+\end{tcblisting}
+对于一系列变量的声明，使用 \#define 可能并不适用，如上所示的第 6 行，预处理器置换声明时对后面的变量不一致。typedef 方法不会出现这样的问题。它能够处理更复杂的类型别名。
+\section{do while 循环}
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	do
+		body
+	while (test-expression);
+\end{tcblisting}
+\section{基于范围的 for 循环（C++11）}
+C++11 新增了一种循环：基于范围（range-based）的 for 循环。这简化了一种常见的循环任务：对数组（或容器类，如 vector 和 array）的每个元素执行相同的操作
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	double price[5] = {4.55, 12.11, 23.12, 33.12, 3.11};
+	for (double x : price)
+		cout << x << std::endl;
+\end{tcblisting}
+要修改数组的元素，需要使用不同的循环变量语法：
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	for (double &x : price)
+		x = x * 0.8;
+\end{tcblisting}
+符号 \& 表明 x 是一个引用变量（我认为这是直接对数组的地址进行引用，从而 x 就是真实的数组元素，而不是复制的副本，这时对 x 的改变就是对地址中存储值的改变）。
+\section{循环和文本输入}
+cin 对象支持 3 种不同模式的单字符输入，其用户接口各不相同。
+\subsection{使用原始的 cin 进行输入}
+如果程序要使用循环来读取来自键盘的文本输入，必须要有办法知道何时停止读取。一种方法是选择某个特殊字符——有时被称为哨兵字符，将其作为停止标记。
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only}
+	//...
+	cin >> ch;
+	while (ch != '#')
+	{
+		cout << ch;
+		++count;
+		cin >> ch;
+	}
+//input
+see ken run#really fast
+//output
+seekenrun
+\end{tcblisting}
+程序输出时省略了空格，原因在 cin。读取 char 值时，与读取其他基本类型一样，cin 将忽略空格和换行符。因此，输入中的空格没有被回显，也没有被包括在计数内。
+
+而且发送给 cin 的输入被缓冲。这表示只有用户按下回车键后，输入的内容才会被发送给程序。这就是在运行程序时，可以在 \# 后输入字符的原因。
+\subsection{使用 cin.get(cahr) 进行补救}
+cin 所属的 istream 类中包含一个能够满足这种要求的成员函数。具体来说，成员函数 cin.get(ch) 读取输入中的下一个字符（即使它是空格），并将其赋给变量。不过该输入仍被缓冲。
+但是在 C 语言中，要修改变量的值，必须将变量{\color{red}地址}传递给函数。而调用 cin.get(ch) 传递的是 ch，而不是 \&ch。在 C 语言中，这样的代码无效。而在 C++ 中有效，只要函数将参数声明为引用即可。
+\subsection{文件尾条件}
+使用诸如 \# 等符号来表示输入结束很难令人满意，这样的符号可能就是合法输入的组成部分。如果输入来自文件，则可以使用一种功能强大的技术——检测文件尾（EOF）。C++输入工具和操作系统协同工作，来检测文件尾并将这种信息告知程序。
+
+读取文件中的信息似乎同 cin 和键盘输入没什么关系，但其实存在两个相关的地方。首先，很多操作系统（包括 Unix、Linux 和 Windows 命令提示符模式）都支持重定向，允许用文件替换键盘输入。其次，很多操作系统都允许通过键盘来模拟文件尾条件。在 Unix 中，可以在行首按下 Ctrl+D 来实现；在 Windows 命令提示符模式下，可以在任意位置按 Ctrl+Z 和 Enter。总之，很多 PC 编程环境都将 Ctrl+Z 视为模拟的 EOF，但具体细节（必须在行首还是可以在任何位置，是否必须按下回车键等）各不相同。
+
+检测到 EOF 后，cin 将两位（eofbit 和 failbit）都设置为 1。可以通过成员函数 eof() 来查看 eofbit 是否被设置；如果检测到 EOF，则 cin.eof() 将返回 bool 值 true，否则返回 false。同样，如果 failbit 被设置为 1，则 fail() 成员函数返回 true，否则返回 false。注意，eof() 和 fail() 方法报告最近读取的结果；也就是说，它们在事后报告，而不是预先报告。因此应将 cin.eof() 或 cin.fail() 测试放在读取后。

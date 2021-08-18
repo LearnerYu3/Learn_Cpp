@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//声明一个指向常量的指针}
+\PYG{k+kt}{int} \PYG{n}{age} \PYG{o}{=} \PYG{l+m+mi}{13}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{pt} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{age}\PYG{p}{;}
+\end{Verbatim}

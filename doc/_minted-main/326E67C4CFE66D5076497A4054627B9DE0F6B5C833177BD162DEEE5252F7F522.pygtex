@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{double} \PYG{n+nf}{pam}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{);}
+\PYG{k+kt}{double} \PYG{p}{(}\PYG{o}{*}\PYG{n}{pf}\PYG{p}{)(}\PYG{k+kt}{int}\PYG{p}{);} \PYG{c+c1}{//pf points to a function that takes}
+\PYG{c+c1}{//one int arg and return type double}
+\PYG{n}{pf} \PYG{o}{=} \PYG{n}{pam}\PYG{p}{;} \PYG{c+c1}{//pf points to pam() function}
+\PYG{k+kt}{double} \PYG{o}{*}\PYG{n+nf}{pf}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{);} \PYG{c+c1}{//pf() a function that return a pointer\PYGZhy{}to\PYGZhy{}double}
+\PYG{k+kt}{double} \PYG{n+nf}{ned}\PYG{p}{(}\PYG{k+kt}{double}\PYG{p}{);}
+\PYG{k+kt}{int} \PYG{n+nf}{ted}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{);}
+\PYG{n}{pf} \PYG{o}{=} \PYG{n}{ned}\PYG{p}{;} \PYG{c+c1}{//invalid \PYGZhy{}\PYGZhy{} mismatched signatures}
+\PYG{n}{pf} \PYG{o}{=} \PYG{n}{ted}\PYG{p}{;} \PYG{c+c1}{//invalid \PYGZhy{}\PYGZhy{} mismatched return types}
+\end{Verbatim}

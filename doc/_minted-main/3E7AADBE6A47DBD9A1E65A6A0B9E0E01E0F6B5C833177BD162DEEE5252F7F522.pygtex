@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{struct} \PYG{n}{travel\PYGZus{}time}
+\PYG{p}{\PYGZob{}}
+	\PYG{k+kt}{int} \PYG{n}{hours}\PYG{p}{;}
+	\PYG{k+kt}{int} \PYG{n}{mins}\PYG{p}{;}		
+\PYG{p}{\PYGZcb{};}
+\PYG{n}{travel\PYGZus{}time} \PYG{n+nf}{sum}\PYG{p}{(}\PYG{n}{travel\PYGZus{}time} \PYG{n}{t1}\PYG{p}{,} \PYG{n}{travel\PYGZus{}time} \PYG{n}{t2}\PYG{p}{);}
+\end{Verbatim}

@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//first method}
+\PYG{k+kt}{int} \PYG{n}{age} \PYG{o}{=} \PYG{l+m+mi}{23}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{pt} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{age}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{sage} \PYG{o}{=} \PYG{l+m+mi}{32}\PYG{p}{;}
+\PYG{n}{pt} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{sage}\PYG{p}{;} \PYG{c+c1}{//okay to point to another location}
+\PYG{c+c1}{//second method}
+\PYG{k+kt}{int} \PYG{n}{sloth} \PYG{o}{=} \PYG{l+m+mi}{3}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{int} \PYG{o}{*} \PYG{n}{ps} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{sloth}\PYG{p}{;} \PYG{c+c1}{//a pointer to const int}
+\PYG{k+kt}{int} \PYG{o}{*} \PYG{k}{const} \PYG{n}{finger} \PYG{o}{=} \PYG{o}{\PYGZam{}}\PYG{n}{sloth}\PYG{p}{;} \PYG{c+c1}{//a const pointer to int}
+\end{Verbatim}

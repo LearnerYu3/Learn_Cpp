@@ -1,0 +1,53 @@
+%chapter 1
+\chapter{复合类型}
+\section{指针、数组}
+用于分配内存的方法，C++有3种管理数据内存的方式
+\begin{enumerate}
+	\item[1] 自动存储
+	在函数内部定义的常规变量使用自动存储空间，被称为自动变量，这意味着它们在所属的函数被调用时自动产生，在该函数结束时消亡。
+	
+	实际上，自动变量是一个局部变量，其作用域为包含它的代码块。代码块是被包含在花括号中的一段代码。自动变量通常存储在栈中。这意味着执行代码块时，其中的变量将依次加入到栈中，而在离开代码块时，将按相反的顺序释放这些变量，这被称为后进先出（LIFO）。因此，在程序执行过程中，栈将不断地增大和缩小。
+	\item[2] 静态存储
+	静态存储是整个程序执行期间都存在地存储方式。使变量成为静态的方式有两种：
+	\begin{itemize}
+		\item 在函数外面定义它
+		\item 在声明变量中使用关键字 static。如
+	\end{itemize}
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+		static double fee = 56.50;
+\end{tcblisting} 
+	在 K\&R C 中只能初始化静态数组和静态结构，而 C++ Release 2.0 和 ANSI C 中，也可以初始化自动数组和自动结构。
+	\item[3] 动态存储
+	new 和 delete 运算符提供了一种比自动变量和静态变量更灵活的方法。它们管理了一个内存池，这在 C++ 中被称为自由存储空间（free store）或堆（heap）。该内存池同用于静态变量和自动变量的内存是分开的。new 和 delete 让你能够在一个函数中分配内存，在另一个函数中释放它。因此，数据的生命周期不完全受程序或函数的生存时间控制。与使用常规变量相比，使用 new 和 delete 让程序员对程序如何使用内存有更大的控制权。然而，内存管理也更复杂。在栈中，自动添加和删除机制使得占用的内存总是连续的，但 new 和 delete 的相互影响可能导致占用的自由存储区不连续，这使得跟踪新分配内存的位置更困难。	
+\end{enumerate}
+\begin{tcolorbox}[title=栈、堆和内存泄露,colback=yellow!5,center title]
+	如果使用 new 运算符在自由存储空间（或堆）上创建变量后，没有调用 delete，即使包含指针的内存由于作用域规则和对象生命周期的原因而被释放，在自由存储空间上动态分配的变量或结构也将继续存在。实际上，将会无法访问自由存储空间中的结构，因为指向这些内存的指针无效。这将导致内存泄漏。被泄漏的内存将在程序的整个生命周期内都不可使用；这些内存被分配出去，但无法收回。极端情况（不过不常见）是，内存泄漏可能会非常严重，以致于应用程序可用的内存被耗尽，出现内存耗尽错误，导致程序崩溃。另外，这种泄漏还会给一些操作系统或在相同的内存空间中运行的应用程序带来负面影响，导致它们崩溃。
+	
+	要避免内存泄漏，最好是同时使用 new 和 delete 运算符，在自由存储空间上动态分配内存，随后便释放它。
+\end{tcolorbox}
+\section{数组的替代品}
+模板类 vector 和 array 是数组的替代品。
+\subsection{模板类 vector}
+模板类 vector 类似于 string 类，也是一种动态数组。可以在运行阶段设置 vector 对象的长度，可在末尾附加新数据，还可在中间插入新数据。基本上，它是使用 new 创建动态数组的替代品。vector 类使用 new 和 delete 来管理内存，但这种工作是自动完成的。
+
+要使用 vector 对象，必须包含头文件 vector。其次，vector 包含在名称空间 std 中。模板使用不同的语法来指出它存储的数据类型。vector 类使用不同的语法来指定元素数。
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+#include<vector>
+using namespace std;
+vector<int> vi;     //create a zero-size array of int
+int n;
+cin >> n;
+vector<double> vd(n);  //create an array of n doubles
+// vector<typename> variable(n_elem);
+\end{tcblisting}
+
+\subsection{模板类 array (C++11)}
+vector 类的功能比数组强大，但付出的代价是效率稍低。如果需要的是固定长度的数组，使用数组是更佳的选择，但代价是不那么方便和安全。C++11 新增了模板类 array，它也位于名称空间 std 中。与数组一样，array 对象的长度也是固定的，也使用栈（静态内存分配），而不是自由存储区，因此其效率和数组相同，但更方便，更安全。
+\begin{tcblisting}{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=8pt},colback=red!5!white,colframe=red!75!black,listing only}
+#include<array>
+using namespace std;
+array<int, 5> ai; //create array object of 5 ints
+array<double, 4> ad = {1.2, 2.1, 3.43, 4.3};
+// array<typename, n_elem> variable;
+\end{tcblisting} 
+在 C++11 中，可将列表初始化用于 vector 和 array 对象，但在 C++98 中，不能堆 vector 对象这样做。

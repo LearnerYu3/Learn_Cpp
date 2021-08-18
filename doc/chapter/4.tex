@@ -1,0 +1,162 @@
+\chapter{函数——C++的编程模块}
+\section{函数基础知识}
+要使用 C++函数，必须要完成如下工作：
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item 提供函数定义
+	\item 提供函数原型
+	\item 调用函数
+\end{itemize}
+\subsection{定义函数}
+可以将函数分为两类：没有返回值的函数和有返回值的函数。没有返回值的函数被称为 void 函数，其通用格式为：
+\begin{ccode}
+void functionName (parameterList)
+{
+	statements;
+	return;  //optional
+}
+\end{ccode}
+有返回值的函数将生成一个值，并返回给调用函数。通用格式为：
+\begin{ccode}
+typeName functionName (parameterList)
+{
+	statements;
+	return value;
+}
+\end{ccode}
+有返回值的函数，必须使用返回语句，以便将值返回给调用函数。值本身可以是常量、变量，也可以是表达式，只是其结果的类型必须为 typeName 类型或可以被转换为 typeName（例如，如果声明是返回类型为 double，而函数返回一个 int 表达式，则该 int 值将被强制转换为 double 类型）。C++对于返回值的类型有一定的限制：不能是数组，但是可以是其它任何类型——整数、浮点数、指针，甚至可以是结构和对象！
+\subsection{函数原型和函数调用}
+\begin{ccode}
+//using prototype and function calls
+#include<iostream>
+void cheers(int); //prototype;no return value
+double cube(double x); //prototype; return a double
+int main()
+{
+	...
+} 
+void cheers(int n)
+{
+	...
+}
+double cube(double x)
+{
+	return x*x*x;
+}
+\end{ccode}
+\begin{enumerate}
+	\item 为什么需要函数原型
+	
+	原型描述了函数到编译器的接口，它将函数返回值的类型（如果有的话）以及参数的类型和数量告诉编译器。
+	\item 原型的语法
+	
+	函数原型是一条语句，必须以分号结束，如上述代码所示，对于 cheer()的原型，只提供了参数类型。通常在原型的参数列表中，可以包括变量名，也可以不包括变量名。原型中的变量名相当于占位符，因此不必与函数定义中的变量名相同。
+\end{enumerate}
+\section{函数参数和按值传递}
+\subsection{数组和函数}
+将数组做为函数参数时，我们知道如下恒等式
+\begin{ccode}
+arr == &arr[0];
+arr[i] == *(arr + i);
+&arr[i] == arr + i;
+\end{ccode}
+传递常规变量时，函数将使用该变量的拷贝；但传递数组时，由于传递的是数组的地址，函数将使用原来的数组。为防止函数无意中修改数组的内容，可在声明形参时使用关键字 const，如
+\begin{ccode}
+void show_array(const double ar[], int n);
+\end{ccode}
+该声明表明，指针 ar 指向的时常量数据。这意味着不能使用 ar 修改该数据，可以使用其值。这并不意味着原始数组必须是常量，而只是意味着不能在 show\_array()函数中使用 ar 来修改这些数据，因此，此函数将数组视为只读数据。
+\subsection{指针和 const}
+可以用不同的方式将 const 关键字用于指针，第一种方法是让指针指向一个常量对象，这样可以防止使用该指针来修改所指向的值，第二种方法是将指针本身声明为常量，这样可以防止改变指针指向的位置。
+\begin{ccode}
+//声明一个指向常量的指针
+int age = 13;
+const int * pt = &age;
+\end{ccode}
+这里将常规变量的地址赋给指向 const 的指针。还有两种可能：将 const 的变量的地址赋给指向 const 的指针（可行）、将 const 的地址赋给常规指针（不可行，表面上可以修改指针指向的值来修改变量的值，这使得解释变得模糊）
+\begin{marker}
+如果数据类型本身并不是指针，则可以将 const 数据或非 const 数据的地址赋给指向 const 的指针，但非 const 指针只能指向非 const 数据的地址。
+\end{marker}
+\begin{tcolorbox}[title=尽可能使用 const,colback=yellow!5!white,center title]
+将指针参数声明为指向常量数据的指针有两条理由：
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item 这样可以避免由于无意间修改数据而导致的编程错误；
+	\item 使用 const 使得函数能够处理 const 和非 const 实参，否则将只能接受非 const 数据。
+\end{itemize}
+如果条件允许，则应将指针形参声明为指向 const 的指针。
+\end{tcolorbox}
+第二种使用 const 的方式使得无法修改指针的值：
+\begin{ccode}
+//first method
+int age = 23;
+const int * pt = &age;
+int sage = 32;
+pt = &sage; //okay to point to another location
+//second method
+int sloth = 3;
+const int * ps = &sloth; //a pointer to const int
+int * const finger = &sloth; //a const pointer to int
+\end{ccode}
+第二种方法中，这种声明格式使得 finger 只能指向 sloth，但允许使用 finger 来修改 sloth 的值。而不能使用 ps 来修改 sloth 的值，但允许将 ps 指向另一个位置。即 finger 和*ps 都是 const，而*finger 和 ps 不是。
+\section{函数和二维数组}
+\section{函数和 C-风格字符串}
+\section{函数和结构}
+使用结构编程时，最直接的方式是像处理基本类型那样来处理结构；将结构作为参数传递，并在需要时将结构用作返回值使用。但如果结构非常大，则复制结构将增大内存要求，降低系统运行的速度。出于这些原因，许多程序员倾向于传递结构的地址，然后使用指针来访问结构的内容。
+\subsection{传递方式}
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\item 传递和返回结构
+	
+	当结构比较小时，按值传递结构最合理
+\begin{ccode}
+struct travel_time
+{
+	int hours;
+	int mins;		
+};
+travel_time sum(travel_time t1, travel_time t2);
+\end{ccode}
+	\item 传递结构的地址
+	
+	假设要传递结构的地址而不是整个结构以节省时间和空间，使用指向结构的指针。
+\begin{ccode}
+travel_time sum(travel_time * t1, travel_time * t2);
+\end{ccode}
+\end{itemize}
+\section{函数与对象}
+\section{函数指针}
+与数据项相似，函数也有地址。函数的地址是存储其机器语言代码的内存的开始地址。可以编写将另一个函数地址作为参数的函数。这样第一个函数将能够找到第二个函数，并运行它。与直接调用另一个函数相比，这种方法很笨拙。
+\subsection{函数指针的基础知识}
+\begin{enumerate}
+	\item 获取函数的地址
+	
+	只要使用函数名即可。即如果 think()是一个函数，则 think 就是该函数的地址。
+	\item 声明函数指针
+	
+	声明指向函数的指针时，必须指定指针指向的函数类型。即声明应指定函数的返回类型以及函数的特征标（参数列表）。
+\begin{ccode}
+double pam(int);
+double (*pf)(int); //pf points to a function that takes 
+//one int arg and return type double
+pf = pam; //pf points to pam() function
+double *pf(int); //pf() a function that return a pointer-to-double
+double ned(double); 
+int ted(int);
+pf = ned; //invalid -- mismatched signatures
+pf = ted; //invalid -- mismatched return types
+\end{ccode}
+	\item 使用指针来调用函数
+	
+	即使用指针来调用被指向的函数，如(*pf)(5)。
+\end{enumerate}
+\begin{ccode}
+const double *(*(*pd)[3])(const double *,int) = &pa;
+//pd = &pa;
+\end{ccode}
+如上代码所示，对于指针的初始化，是对指针变量的初始化，而不是对指针形式的初始化。即上述代码是 {\color{red}pd=\&pa}，而非{\color{red}*(*(*pd)[3]=\&pa)}。即初始化的是指针，而不是指针指向的值。

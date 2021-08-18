@@ -1,0 +1,172 @@
+\documentclass[UTF8,AutoFakeBold,AutoFakeSlant,zihao=-4,oneside,openany]{ctexbook}
+\usepackage[a4paper,left=3cm,right=2.6cm,top=3.5cm,bottom=2.9cm]{geometry}
+% 目前 29mm 最接近 Word 排版
+\usepackage{titletoc}
+%\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{tikz}
+\usetikzlibrary{quotes,angles}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,xparse}
+\tcbuselibrary{minted}
+\tcbuselibrary{breakable}
+\tcbuselibrary{listings}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+
+% 主题页面格式：BIThesis
+\fancypagestyle{BIThesis}{
+	% 页眉高度
+	\setlength{\headheight}{20pt}
+	% 页码高度（不完美，比规定稍微靠下 2mm）
+	\setlength{\footskip}{14pt}
+	
+	\fancyhf{}
+	% 定义页眉、页码
+	\fancyhead[C]{\zihao{4}\ziju{0.08}\songti{C++ 笔记}}
+	\fancyfoot[C]{\songti\zihao{5} \thepage}
+	% 页眉分割线稍微粗一些
+	\renewcommand{\headrulewidth}{0.6pt}
+}
+
+% 设置章节格式
+% 一级标题：黑体，三号，加粗；间距：段前 0.5 行，段后 1 行；
+\ctexset{chapter={
+		name = {第,章},
+		number = {\arabic{chapter}},
+		format = {\heiti \bfseries \centering \zihao{3}},
+		aftername = \hspace{9bp},
+		pagestyle = BIThesis,
+		beforeskip = 8bp,
+		afterskip = 32bp,
+		fixskip = true,
+	}
+}
+
+% 二级标题：黑体，四号，加粗；间距：段前 0.5 行，段后 0 行；
+\ctexset{section={
+		number = {\thechapter.\hspace{4bp}\arabic{section}},
+		format = {\heiti \raggedright \bfseries \zihao{4}},
+		aftername = \hspace{8bp},
+		beforeskip = 20bp plus 1ex minus .2ex,
+		afterskip = 18bp plus .2ex,
+		fixskip = true,
+	}
+}
+
+% 三级标题：黑体、小四、加粗；间距：段前 0.5 行，段后 0 行；
+\ctexset{subsection={
+		number = {\thechapter.\hspace{3bp}\arabic{section}.\hspace{3bp}\arabic{subsection}},
+		format = {\heiti \bfseries \raggedright \zihao{-4}},
+		aftername = \hspace{7bp},
+		beforeskip = 17bp plus 1ex minus .2ex,
+		afterskip = 14bp plus .2ex,
+		fixskip = true,
+	}
+}
+
+% 设置目录样式
+% 添加 PDF 链接
+\addtocontents{toc}{\protect\hypersetup{hidelinks}}
+
+% 解决「目录」二字的格式问题
+\renewcommand{\contentsname}{
+	\fontsize{16pt}{\baselineskip}
+	\normalfont\heiti{目~~~~录}
+	\vspace{-8pt}
+}
+% 定义目录样式
+\titlecontents{chapter}[0pt]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{section}[2\ccwd]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+\titlecontents{subsection}[4\ccwd]{\songti \zihao{-4}}
+{\thecontentslabel\hspace{\ccwd}}{}
+{\hspace{.5em}\titlerule*{.}\contentspage}
+
+% 前置页面（原创性声明、中英文摘要、目录等）
+\renewcommand{\frontmatter}{
+	\pagenumbering{Roman}
+	\pagestyle{BIThesis}
+}
+
+% 正文页面
+\renewcommand{\mainmatter}{
+	\pagenumbering{arabic}
+	\pagestyle{BIThesis}
+}
+
+% 设置 caption 与 figure 之间的距离
+\setlength{\abovecaptionskip}{11pt}
+\setlength{\belowcaptionskip}{9pt}
+
+% 设置图片的 caption 格式
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\captionsetup[figure]{font=small,labelsep=space}
+
+% 设置表格的 caption 与 table 之间的垂直距离
+\captionsetup[table]{skip=5pt}
+
+% 设置表格的 caption 格式
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+\captionsetup[table]{labelsep=space}
+
+% 设置数学公式编号格式
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+
+% 设置C++代码显示方式
+\newtcblisting{ccode}[1][]{listing engine=minted,minted style=trac,minted language=c++,minted options={linenos,numbersep=5pt},colback=red!5!white,colframe=red!75!black,listing only,#1}
+
+% 定义警示框环境
+\newtcolorbox{marker}[1][]{enhanced,
+	before skip=2mm,after skip=3mm,
+	boxrule=0.4pt,left=5mm,right=2mm,top=1mm,bottom=1mm,
+	colback=yellow!50,
+	colframe=yellow!20!black,
+	sharp corners,rounded corners=southeast,arc is angular,arc=3mm,
+	underlay={%
+		\path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+		\path[draw=tcbcolframe,shorten <=-0.05mm,shorten >=-0.05mm] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
+		\path[fill=yellow!50!black,draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
+	},
+	drop fuzzy shadow,#1}
+
+\title{C++ 学习笔记}
+\author{于程洋}
+\begin{document}
+	\maketitle
+	\frontmatter
+	% 调整目录行间距
+	\renewcommand{\baselinestretch}{1.35}
+	% 目录
+	\tableofcontents
+	\newpage
+	% 正文开始
+	\mainmatter
+	% 正文 22 磅的行距
+	\setlength{\parskip}{0em}
+	\renewcommand{\baselinestretch}{1.53}
+	\input{chapter/1.tex}
+	\input{chapter/2.tex}
+	\input{chapter/3.tex}
+	\input{chapter/4.tex}
+	\input{chapter/5.tex}
+	\input{chapter/6.tex}
+\end{document}

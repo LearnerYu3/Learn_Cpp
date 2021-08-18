@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{year} \PYG{o}{=} \PYG{l+m+mi}{3210}\PYG{p}{;}
+\PYG{n}{print}\PYG{p}{(}\PYG{n}{year}\PYG{p}{,} \PYG{l+m+mi}{6}\PYG{p}{);}
+\end{Verbatim}

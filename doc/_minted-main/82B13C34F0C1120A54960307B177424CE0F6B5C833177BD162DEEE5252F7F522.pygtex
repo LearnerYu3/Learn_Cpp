@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{const} \PYG{n}{free\PYGZus{}throws} \PYG{o}{\PYGZam{}} \PYG{n}{clone}\PYG{p}{(}\PYG{n}{free\PYGZus{}throws} \PYG{o}{\PYGZam{}} \PYG{n}{ft}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{n}{free\PYGZus{}throws} \PYG{n}{newguy}\PYG{p}{;}
+	\PYG{n}{newguy} \PYG{o}{=} \PYG{n}{ft}\PYG{p}{;}
+	\PYG{n}{retunr} \PYG{n}{newguy}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

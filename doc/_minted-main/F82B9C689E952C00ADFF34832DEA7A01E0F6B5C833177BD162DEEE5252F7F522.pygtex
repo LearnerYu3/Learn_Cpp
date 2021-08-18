@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{typedef} \PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{byte\PYGZus{}pointer}\PYG{p}{;}
+\PYG{c+c1}{// or}
+\PYG{c+cp}{\PYGZsh{}define float\PYGZus{}pointer float *}
+\PYG{n}{float\PYGZus{}pointer} \PYG{n}{pa}\PYG{p}{,} \PYG{n}{pb}\PYG{p}{;}
+\PYG{c+c1}{// preprocessor convert to}
+\PYG{k+kt}{float} \PYG{o}{*} \PYG{n}{pa}\PYG{p}{,} \PYG{n}{pb}\PYG{p}{;} \PYG{c+c1}{//pa a pointer, pb just a float}
+\end{Verbatim}

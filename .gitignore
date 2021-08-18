@@ -1,0 +1,8 @@
+*.exe
+*.aux
+*.listing
+*.log
+*.out
+*.toc
+doc\_minted-main\
+*gz

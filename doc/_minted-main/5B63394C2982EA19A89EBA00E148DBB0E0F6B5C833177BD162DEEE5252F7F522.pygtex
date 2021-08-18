@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void} \PYG{n+nf}{print}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{str}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{);} \PYG{c+c1}{//\PYGZsh{}1}
+\PYG{k+kt}{void} \PYG{n+nf}{print}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{d}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{);}         \PYG{c+c1}{//\PYGZsh{}2}
+\PYG{k+kt}{void} \PYG{n+nf}{print}\PYG{p}{(}\PYG{k+kt}{long} \PYG{n}{l}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{);}           \PYG{c+c1}{//\PYGZsh{}3}
+\PYG{k+kt}{void} \PYG{n+nf}{print}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{);}            \PYG{c+c1}{//\PYGZsh{}4}
+\PYG{k+kt}{void} \PYG{n+nf}{print}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*} \PYG{n}{str}\PYG{p}{);}            \PYG{c+c1}{//\PYGZsh{}5}
+\end{Verbatim}

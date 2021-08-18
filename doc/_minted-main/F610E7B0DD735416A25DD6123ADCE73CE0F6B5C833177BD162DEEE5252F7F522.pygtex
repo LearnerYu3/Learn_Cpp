@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k+kt}{double} \PYG{n}{price}\PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{]} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+m+mf}{4.55}\PYG{p}{,} \PYG{l+m+mf}{12.11}\PYG{p}{,} \PYG{l+m+mf}{23.12}\PYG{p}{,} \PYG{l+m+mf}{33.12}\PYG{p}{,} \PYG{l+m+mf}{3.11}\PYG{p}{\PYGZcb{};}
+	\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{double} \PYG{n+nl}{x} \PYG{p}{:} \PYG{n}{price}\PYG{p}{)}
+		\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{x} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+\end{Verbatim}

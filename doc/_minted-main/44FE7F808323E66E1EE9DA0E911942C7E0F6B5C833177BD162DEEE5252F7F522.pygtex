@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{test}\PYG{o}{\PYGZhy{}}\PYG{n}{condition}\PYG{p}{)}
+		\PYG{n}{body}
+\end{Verbatim}

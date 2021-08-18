@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{c+c1}{//...}
+	\PYG{n}{cin} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{ch}\PYG{p}{;}
+	\PYG{k}{while} \PYG{p}{(}\PYG{n}{ch} \PYG{o}{!=} \PYG{l+s+sc}{\PYGZsq{}\PYGZsh{}\PYGZsq{}}\PYG{p}{)}
+	\PYG{p}{\PYGZob{}}
+		\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{ch}\PYG{p}{;}
+		\PYG{o}{++}\PYG{n}{count}\PYG{p}{;}
+		\PYG{n}{cin} \PYG{o}{\PYGZgt{}\PYGZgt{}} \PYG{n}{ch}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{//input}
+\PYG{n}{see} \PYG{n}{ken} \PYG{n}{run}\PYG{err}{\PYGZsh{}}\PYG{n}{really} \PYG{n}{fast}
+\PYG{c+c1}{//output}
+\PYG{n}{seekenrun}
+\end{Verbatim}

@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//using prototype and function calls}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{k+kt}{void} \PYG{n+nf}{cheers}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{);} \PYG{c+c1}{//prototype;no return value}
+\PYG{k+kt}{double} \PYG{n+nf}{cube}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{x}\PYG{p}{);} \PYG{c+c1}{//prototype; return a double}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+	\PYG{p}{...}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n+nf}{cheers}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{n}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{p}{...}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{double} \PYG{n+nf}{cube}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{x}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+	\PYG{k}{return} \PYG{n}{x}\PYG{o}{*}\PYG{n}{x}\PYG{o}{*}\PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

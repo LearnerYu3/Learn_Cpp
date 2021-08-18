@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+	\PYG{k+kt}{double} \PYG{n}{x} \PYG{o}{=} \PYG{o}{*++}\PYG{n}{pt}\PYG{p}{;}  \PYG{c+c1}{//increment pointer, pt points to arr[2]}
+	\PYG{o}{++*}\PYG{n}{pt}\PYG{p}{;}
+\PYG{c+c1}{//increment the pointed to value, change 23.4 to 24.4}
+	\PYG{p}{(}\PYG{o}{*}\PYG{n}{pt}\PYG{p}{)}\PYG{o}{++}\PYG{p}{;}   \PYG{c+c1}{//increment pointed\PYGZhy{}to value}
+	\PYG{n}{x} \PYG{o}{=} \PYG{o}{*}\PYG{n}{pt}\PYG{o}{++}\PYG{p}{;}
+\PYG{c+c1}{//dereference original location, then increment pointer}
+\end{Verbatim}
